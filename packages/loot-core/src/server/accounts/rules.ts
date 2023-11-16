@@ -204,16 +204,30 @@ let CONDITION_TYPES = {
   },
 };
 
+export type ConditionOperator =
+  | 'isapprox'
+  | 'is'
+  | 'isNot'
+  | 'isbetween'
+  | 'contains'
+  | 'doesNotContain'
+  | 'oneOf'
+  | 'notOneOf'
+  | 'gt'
+  | 'gte'
+  | 'lt'
+  | 'lte';
+
 export class Condition {
   field;
-  op;
+  op: ConditionOperator;
   options;
   rawValue;
   type;
   unparsedValue;
   value;
 
-  constructor(op, field, value, options, fieldTypes) {
+  constructor(op: ConditionOperator, field, value, options, fieldTypes) {
     let typeName = fieldTypes.get(field);
     assert(typeName, 'internal', 'Invalid condition field: ' + field);
 

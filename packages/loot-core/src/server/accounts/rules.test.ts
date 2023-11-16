@@ -5,8 +5,8 @@ import {
   Condition,
   Action,
   Rule,
-  RuleIndexer,
-} from './rules';
+  RuleIndexer, ConditionOperator
+} from "./rules";
 
 let fieldTypes = new Map(
   Object.entries({
@@ -48,7 +48,7 @@ describe('Condition', () => {
     cond = new Condition('oneOf', 'name', ['foo'], null, fieldTypes);
     expect(cond.eval({ name: null })).toBe(false);
 
-    ['gt', 'gte', 'lt', 'lte', 'isapprox'].forEach(op => {
+    ['gt', 'gte', 'lt', 'lte', 'isapprox'].forEach( (op: ConditionOperator) => {
       let cond = new Condition(op, 'date', '2020-01-01', null, fieldTypes);
       expect(cond.eval({ date: null })).toBe(false);
     });

@@ -1,4 +1,5 @@
 import { type ScheduleEntity } from './schedule';
+import { type ConditionOperator } from "../../server/accounts/rules";
 
 export interface RuleEntity {
   id?: string;
@@ -11,7 +12,7 @@ export interface RuleEntity {
 
 interface RuleConditionEntity {
   field: unknown;
-  op: unknown;
+  op: ConditionOperator;
   value: unknown;
   options?: unknown;
   conditionsOp?: unknown;
